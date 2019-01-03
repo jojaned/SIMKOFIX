@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="id.sch.sman3kediri.www.simkofix.listView_nilai"
+    tools:layout_editor_absoluteY="81dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        
+        <TextView
+            android:layout_width="20dp"
+            android:layout_height="wrap_content" 
+            android:id="@+id/tvNoNilai"
+            android:hint="1"/>
+        <TextView
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/tvNamaNilai"
+            android:hint="Nama"/>
+        
+        <TextView
+            android:layout_width="35dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/tvKognitif"
+            android:hint="86"
+            android:textAlignment="center"/>
+        <TextView
+            android:layout_width="35dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/tvPsikomotor"
+            android:hint="86"
+            android:textAlignment="center"/>
+        <TextView
+            android:layout_width="35dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/tvAfektif"
+            android:hint="A"
+            android:textAlignment="center"/>
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@color/colorPrimaryDark"></View>
+
+</android.support.constraint.ConstraintLayout>
