@@ -132,7 +132,7 @@ private String JSON_STRING;
 
         addDataset();
         
-        //Membuat script utk menampilkan isi
+        //test Membuat script utk menampilkan isi
         pieChart.setOnChartValueSelectedListener(new OnChartValueSelectedListener() {
             @Override
             public void onValueSelected(Entry e, Highlight h) {
