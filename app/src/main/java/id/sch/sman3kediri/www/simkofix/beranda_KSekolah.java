@@ -33,6 +33,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.github.mikephil.charting.utils.ViewPortHandler;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -61,14 +62,18 @@ private String getExtra_nisn;
 
 private Button keuangan, pelanggaran, informasi, nilai;
 //private static String URL_POST_PPRESENSI="http://192.168.43.218/SIMKO/viewPresensi.php?nisn=";
-private static String URL_POST_PPRESENSI="http://117.102.78.43/android_register_login/viewPresensiALL.php";
+private static String URL_POST_PPRESENSI="http://117.102.78.43/android_register_login/viewPresensiKS.php";
 
 private static String TAG = "beranda_KSekolah";
 
 //ambil array jsonObject
-private float[] yData = {.96F,.04F};
+private float jfmasuk, jfabsen;
+private float[] yData = {.04F,.96F};
 private String[] xData = {"% Absen","% Masuk"};
+/*public float[] yData = {};
+public String[] xData = {};*/
 PieChart pieChart;
+private String JSON_STRING;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,7 +84,27 @@ PieChart pieChart;
         getSupportActionBar().setDisplayUseLogoEnabled(true);
         getSupportActionBar().setTitle("   SIMKO SMAN 3 KEDIRI");
 
+        JSONObject jsonObject = null;
+        try {
+            jsonObject = new JSONObject(JSON_STRING);
+            JSONArray result = jsonObject.getJSONArray("result");
 
+            JSONObject jo = result.getJSONObject(1);
+            String jdatang = jo.getString("jumlahp");
+
+            int idatang = Integer.parseInt(jdatang);
+            int itotal = 900;
+            float fabsen = (idatang-itotal)/itotal;
+            float fmasuk = itotal/itotal;
+
+            final float [] yData = {fabsen, fmasuk};
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+
+
+        //final String [] xData = {};
 
 
         //deklarasi button untuk di hide
@@ -135,26 +160,17 @@ PieChart pieChart;
         });
 
 
-
-        //getIntent dari phpJason
-/*
-        nisn.setText(getIntent().getStringExtra("nisn"));
-        nama.setText(getIntent().getStringExtra("nama"));
-        kelas.setText(getIntent().getStringExtra("kelas"));
-        masuk.setText(getIntent().getStringExtra("masuk"));
-        pulang.setText(getIntent().getStringExtra("pulang"));
-*/
-
-        //deklarasi button
-
-
-
     }
 
     private void addDataset() {
         Log.d(TAG, "Mulai addDataSet");
+
+        //angka masukkan
         ArrayList<PieEntry> yEntrys = new ArrayList<>();
+
+        //nama atau label
         ArrayList<String> xEntrys = new ArrayList<>();
+
 
         for(int i = 0; i<yData.length; i++){
 
